@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls,
+  System.ImageList, Vcl.ImgList;
 
 type
   TFormPrincipal = class(TForm)
@@ -15,27 +16,33 @@ type
     PcCadastro: TTabSheet;
     GroupBox2: TGroupBox;
     Label1: TLabel;
-    Label2: TLabel;
+    LblTipoPessoa: TLabel;
     EdtNome: TEdit;
     EdtCpf: TEdit;
-    ChkFisica: TCheckBox;
-    ChkJuridica: TCheckBox;
     EdtRg: TEdit;
     LblRg: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
     LblRua: TLabel;
     LblNumero: TLabel;
     LblCep: TLabel;
     EdtRua: TEdit;
     EdtNumero: TEdit;
     EdtCep: TEdit;
-    procedure LblTipoPessoaClick(Sender: TObject);
-    procedure PcCadastroContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
-    procedure PnlInformativoClick(Sender: TObject);
-
-
+    ImageList1: TImageList;
+    Button1: TButton;
+    BtnCancelar: TButton;
+    BtnNext: TButton;
+    GBLogin: TGroupBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    BtnCadastro: TButton;
+    BtnLog: TButton;
+    RgTipoPessoa: TRadioGroup;
+    procedure EdtNomeExit(Sender: TObject);
+    procedure BtnNextClick(Sender: TObject);
+    procedure BtnCadastroClick(Sender: TObject);
+    procedure RgTipoPessoaClick(Sender: TObject);
     private
     { Private declarations }
   public
@@ -49,18 +56,31 @@ implementation
 
 {$R *.dfm}
 
+uses Cadastros, UTools;
 
-
-procedure TFormPrincipal.LblTipoPessoaClick(Sender: TObject);
+procedure TFormPrincipal.BtnNextClick(Sender: TObject);
 begin
-  if ChkFisica.Checked then
-  begin
-    Label2.Caption := 'CPF'
-  end
+  PageControl1.ActivePageIndex := 1;
+end;
+
+procedure TFormPrincipal.BtnCadastroClick(Sender: TObject);
+begin
+  PageControl1.ActivePageIndex := 2;
+end;
+
+procedure TFormPrincipal.EdtNomeExit(Sender: TObject);
+begin
+  if EdtNome.Text = '' then
+     MessageDlg('Campo não pode ser vázio', mtError ,[mbOK], 0);
+     EdtNome.SetFocus;
+end;
+
+procedure TFormPrincipal.RgTipoPessoaClick(Sender: TObject);
+begin
+  if RgTipoPessoa.ItemIndex = 0 then
+    LblTipoPessoa.Caption  := 'CPF'
   else
-  begin
-    Label2.Caption := 'CNPJ'
-  end;
+    LblTipoPessoa.Caption := 'CNPJ'
 end;
 
 end.
