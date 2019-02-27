@@ -30,19 +30,30 @@ type
     ImageList1: TImageList;
     Button1: TButton;
     BtnCancelar: TButton;
-    BtnNext: TButton;
     GBLogin: TGroupBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edtCpflog: TEdit;
+    EdtNomeLog: TEdit;
     Label2: TLabel;
     Label3: TLabel;
     BtnCadastro: TButton;
     BtnLog: TButton;
     RgTipoPessoa: TRadioGroup;
-    procedure EdtNomeExit(Sender: TObject);
-    procedure BtnNextClick(Sender: TObject);
+    RgFuncao: TRadioGroup;
+    BtnTransferencia: TButton;
+    Lblitem: TLabel;
+    LsbbxItemselecionado: TListBox;
+    RgSalario: TRadioGroup;
+    LsbSalario: TListBox;
+    BtnLimpar: TButton;
+    MmObservacao: TMemo;
+    LblObservacao: TLabel;
+    BtnObservacao: TButton;
+    BtnObservacaoLimpar: TButton;
     procedure BtnCadastroClick(Sender: TObject);
     procedure RgTipoPessoaClick(Sender: TObject);
+    procedure BtnTransferenciaClick(Sender: TObject);
+    procedure BtnLimparClick(Sender: TObject);
+    procedure BtnLogClick(Sender: TObject);
     private
     { Private declarations }
   public
@@ -58,21 +69,39 @@ implementation
 
 uses Cadastros, UTools;
 
-procedure TFormPrincipal.BtnNextClick(Sender: TObject);
+procedure TFormPrincipal.BtnLimparClick(Sender: TObject);
 begin
-  PageControl1.ActivePageIndex := 1;
+  LsbbxItemselecionado.Items.Clear; //  limpando dados
+  LsbSalario.Items.Clear;
+end;
+
+procedure TFormPrincipal.BtnLogClick(Sender: TObject);
+var
+  nome : String;
+begin
+  nome := 'matheus';
+  if EdtNomeLog.Text = nome   then
+    PageControl1.ActivePageIndex := 1
+  else if EdtNomeLog.Text = '' then
+    MessageDlg('Insera seus dados' , mtWarning , mbOKCancel, 0)
+  else
+    MessageDlg('Você não está cadastrado',mtError,mbOKCancel,0);
+end;
+
+procedure TFormPrincipal.BtnTransferenciaClick(Sender: TObject);
+begin
+  if RgFuncao.ItemIndex >= 0 then
+    LsbbxItemselecionado.Items.Add(RgFuncao.Items[RgFuncao.ItemIndex]);
+    RgFuncao.ItemIndex := -1;
+  //Salário
+  if RgSalario.ItemIndex >= 0 then
+    LsbSalario.Items.Add(RgSalario.Items[RgSalario.ItemIndex ]);
+    RgSalario.ItemIndex := -1
 end;
 
 procedure TFormPrincipal.BtnCadastroClick(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 2;
-end;
-
-procedure TFormPrincipal.EdtNomeExit(Sender: TObject);
-begin
-  if EdtNome.Text = '' then
-     MessageDlg('Campo não pode ser vázio', mtError ,[mbOK], 0);
-     EdtNome.SetFocus;
 end;
 
 procedure TFormPrincipal.RgTipoPessoaClick(Sender: TObject);
