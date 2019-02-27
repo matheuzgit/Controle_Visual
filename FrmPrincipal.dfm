@@ -33,12 +33,11 @@ object FormPrincipal: TFormPrincipal
     Top = 57
     Width = 571
     Height = 283
-    ActivePage = PcHome
+    ActivePage = PcCadastro
     Align = alClient
     TabOrder = 1
     object PcHome: TTabSheet
       Caption = 'Home'
-      ExplicitLeft = 8
       object GBLogin: TGroupBox
         Left = 168
         Top = 11
@@ -50,7 +49,7 @@ object FormPrincipal: TFormPrincipal
           Left = 43
           Top = 58
           Width = 27
-          Height = 21
+          Height = 13
           Caption = 'Nome'
           WordWrap = True
         end
@@ -61,21 +60,19 @@ object FormPrincipal: TFormPrincipal
           Height = 13
           Caption = 'CPF'
         end
-        object Edit1: TEdit
+        object edtCpflog: TEdit
           Left = 43
           Top = 114
           Width = 121
           Height = 21
           TabOrder = 0
-          OnExit = EdtNomeExit
         end
-        object Edit2: TEdit
+        object EdtNomeLog: TEdit
           Left = 43
           Top = 74
           Width = 121
           Height = 21
           TabOrder = 1
-          OnExit = EdtNomeExit
         end
         object BtnCadastro: TButton
           Left = 61
@@ -93,29 +90,102 @@ object FormPrincipal: TFormPrincipal
           Height = 25
           Caption = 'Entra'
           TabOrder = 3
-          OnClick = BtnCadastroClick
+          OnClick = BtnLogClick
         end
       end
     end
     object PcCliente: TTabSheet
       Caption = 'Cliente'
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 40
+      object Lblitem: TLabel
+        Left = 351
+        Top = 8
+        Width = 82
+        Height = 13
+        Caption = 'Item Selecionado'
+      end
+      object RgFuncao: TRadioGroup
+        Left = 16
+        Top = 16
+        Width = 185
+        Height = 105
+        Caption = 'Fun'#231#227'o'
+        ItemIndex = 0
+        Items.Strings = (
+          'Funcionario'
+          'Proprietario'
+          'Vagas disponiveis ')
+        TabOrder = 0
+      end
+      object BtnTransferencia: TButton
+        Left = 232
+        Top = 104
+        Width = 75
+        Height = 25
+        Caption = 'Transferir'
+        TabOrder = 1
+        OnClick = BtnTransferenciaClick
+      end
+      object LsbbxItemselecionado: TListBox
+        Left = 351
+        Top = 24
+        Width = 188
+        Height = 97
+        ItemHeight = 13
+        TabOrder = 2
+      end
+      object RgSalario: TRadioGroup
+        Left = 16
+        Top = 120
+        Width = 185
+        Height = 105
+        Caption = 'Sal'#225'rio'
+        ItemIndex = 0
+        Items.Strings = (
+          '1000'
+          '5000'
+          '0000')
+        TabOrder = 3
+      end
+      object LsbSalario: TListBox
+        Left = 351
+        Top = 128
+        Width = 188
+        Height = 97
+        ItemHeight = 13
+        TabOrder = 4
+      end
+      object BtnLimpar: TButton
+        Left = 232
+        Top = 227
+        Width = 75
+        Height = 25
+        Caption = 'Limpar'
+        TabOrder = 5
+        OnClick = BtnLimparClick
+      end
     end
     object PcCadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 2
+      ExplicitLeft = 0
+      object LblObservacao: TLabel
+        Left = 6
+        Top = 172
+        Width = 58
+        Height = 13
+        Caption = 'Observa'#231#227'o'
+      end
       object GroupBox2: TGroupBox
         Left = 176
-        Top = 0
+        Top = 3
         Width = 376
-        Height = 247
+        Height = 185
         Caption = 'Cliente Fisico'
         TabOrder = 0
         object Label1: TLabel
           Left = 11
-          Top = 39
+          Top = 18
           Width = 27
           Height = 13
           Caption = 'Nome'
@@ -123,21 +193,21 @@ object FormPrincipal: TFormPrincipal
         end
         object LblTipoPessoa: TLabel
           Left = 11
-          Top = 85
+          Top = 63
           Width = 19
           Height = 13
           Caption = 'CPF'
         end
         object LblRg: TLabel
           Left = 13
-          Top = 128
+          Top = 110
           Width = 14
           Height = 13
           Caption = 'RG'
         end
         object LblRua: TLabel
           Left = 173
-          Top = 39
+          Top = 22
           Width = 19
           Height = 13
           Caption = 'Rua'
@@ -145,7 +215,7 @@ object FormPrincipal: TFormPrincipal
         end
         object LblNumero: TLabel
           Left = 173
-          Top = 85
+          Top = 63
           Width = 37
           Height = 13
           Caption = 'Numero'
@@ -153,7 +223,7 @@ object FormPrincipal: TFormPrincipal
         end
         object LblCep: TLabel
           Left = 173
-          Top = 131
+          Top = 110
           Width = 19
           Height = 13
           Caption = 'Cep'
@@ -161,50 +231,49 @@ object FormPrincipal: TFormPrincipal
         end
         object EdtNome: TEdit
           Left = 11
-          Top = 58
+          Top = 37
           Width = 121
           Height = 21
           TabOrder = 0
-          OnExit = EdtNomeExit
         end
         object EdtCpf: TEdit
           Left = 11
-          Top = 104
+          Top = 83
           Width = 121
           Height = 21
           TabOrder = 1
         end
         object EdtRg: TEdit
-          Left = 11
-          Top = 147
+          Left = 13
+          Top = 129
           Width = 121
           Height = 21
           TabOrder = 2
         end
         object EdtRua: TEdit
           Left = 173
-          Top = 58
+          Top = 38
           Width = 197
           Height = 21
           TabOrder = 3
         end
         object EdtNumero: TEdit
           Left = 174
-          Top = 104
+          Top = 83
           Width = 49
           Height = 21
           TabOrder = 4
         end
         object EdtCep: TEdit
           Left = 174
-          Top = 148
+          Top = 126
           Width = 113
           Height = 21
           TabOrder = 5
         end
         object Button1: TButton
           Left = 197
-          Top = 208
+          Top = 151
           Width = 76
           Height = 25
           Caption = 'Confirma'
@@ -214,7 +283,7 @@ object FormPrincipal: TFormPrincipal
         end
         object BtnCancelar: TButton
           Left = 279
-          Top = 208
+          Top = 150
           Width = 76
           Height = 25
           Caption = 'Cancelar'
@@ -224,10 +293,10 @@ object FormPrincipal: TFormPrincipal
         end
       end
       object RgTipoPessoa: TRadioGroup
-        Left = 16
-        Top = 1
-        Width = 139
-        Height = 105
+        Left = 3
+        Top = 3
+        Width = 167
+        Height = 76
         Caption = 'CPF/CNPJ'
         Items.Strings = (
           'Pessoa Fisica'
@@ -235,23 +304,39 @@ object FormPrincipal: TFormPrincipal
         TabOrder = 1
         OnClick = RgTipoPessoaClick
       end
+      object MmObservacao: TMemo
+        Left = 3
+        Top = 191
+        Width = 446
+        Height = 61
+        Lines.Strings = (
+          '')
+        TabOrder = 2
+      end
+      object BtnObservacao: TButton
+        Left = 455
+        Top = 194
+        Width = 75
+        Height = 25
+        Caption = 'Adicionar'
+        TabOrder = 3
+      end
+      object BtnObservacaoLimpar: TButton
+        Left = 455
+        Top = 225
+        Width = 75
+        Height = 25
+        Caption = 'Limpar'
+        TabOrder = 4
+      end
     end
-  end
-  object BtnNext: TButton
-    Left = 8
-    Top = 304
-    Width = 25
-    Height = 28
-    ImageIndex = 1
-    Images = ImageList1
-    TabOrder = 2
   end
   object ImageList1: TImageList
     Tag = 16
-    Left = 68
-    Top = 304
+    Left = 540
+    Top = 312
     Bitmap = {
-      494C0101030024004C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103002400500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000291C85993B28C0DD110C38410000
       0000000000000000000000000000000000000000000000000000000000000000
