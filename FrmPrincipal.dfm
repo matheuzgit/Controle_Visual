@@ -33,7 +33,7 @@ object FormPrincipal: TFormPrincipal
     Top = 57
     Width = 571
     Height = 283
-    ActivePage = PcCadastro
+    ActivePage = PcHome
     Align = alClient
     TabOrder = 1
     object PcHome: TTabSheet
@@ -92,6 +92,15 @@ object FormPrincipal: TFormPrincipal
           TabOrder = 3
           OnClick = BtnLogClick
         end
+      end
+      object BtnDataHora: TButton
+        Left = 464
+        Top = 208
+        Width = 75
+        Height = 25
+        Caption = 'Data/Hora'
+        TabOrder = 1
+        OnClick = BtnDataHoraClick
       end
     end
     object PcCliente: TTabSheet
@@ -168,7 +177,6 @@ object FormPrincipal: TFormPrincipal
     object PcCadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 2
-      ExplicitLeft = 0
       object LblObservacao: TLabel
         Left = 6
         Top = 172
@@ -320,6 +328,7 @@ object FormPrincipal: TFormPrincipal
         Height = 25
         Caption = 'Adicionar'
         TabOrder = 3
+        OnClick = BtnObservacaoClick
       end
       object BtnObservacaoLimpar: TButton
         Left = 455
@@ -328,6 +337,7 @@ object FormPrincipal: TFormPrincipal
         Height = 25
         Caption = 'Limpar'
         TabOrder = 4
+        OnClick = BtnObservacaoLimparClick
       end
     end
   end
@@ -336,7 +346,7 @@ object FormPrincipal: TFormPrincipal
     Left = 540
     Top = 312
     Bitmap = {
-      494C010103002400500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103002400580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000291C85993B28C0DD110C38410000
       0000000000000000000000000000000000000000000000000000000000000000
