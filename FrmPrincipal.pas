@@ -49,11 +49,15 @@ type
     LblObservacao: TLabel;
     BtnObservacao: TButton;
     BtnObservacaoLimpar: TButton;
+    BtnDataHora: TButton;
     procedure BtnCadastroClick(Sender: TObject);
     procedure RgTipoPessoaClick(Sender: TObject);
     procedure BtnTransferenciaClick(Sender: TObject);
     procedure BtnLimparClick(Sender: TObject);
     procedure BtnLogClick(Sender: TObject);
+    procedure BtnObservacaoLimparClick(Sender: TObject);
+    procedure BtnObservacaoClick(Sender: TObject);
+    procedure BtnDataHoraClick(Sender: TObject);
     private
     { Private declarations }
   public
@@ -67,7 +71,12 @@ implementation
 
 {$R *.dfm}
 
-uses Cadastros, UTools;
+uses Cadastros, UTools, UDataHora;
+
+procedure TFormPrincipal.BtnDataHoraClick(Sender: TObject);
+begin
+  UfrmDatahr.ShowModal;
+end;
 
 procedure TFormPrincipal.BtnLimparClick(Sender: TObject);
 begin
@@ -86,6 +95,17 @@ begin
     MessageDlg('Insera seus dados' , mtWarning , mbOKCancel, 0)
   else
     MessageDlg('Você não está cadastrado',mtError,mbOKCancel,0);
+end;
+
+procedure TFormPrincipal.BtnObservacaoClick(Sender: TObject);
+begin
+  MmObservacao.SelectAll;
+  MmObservacao.SetFocus;
+end;
+
+procedure TFormPrincipal.BtnObservacaoLimparClick(Sender: TObject);
+begin
+  MmObservacao.Clear;
 end;
 
 procedure TFormPrincipal.BtnTransferenciaClick(Sender: TObject);
